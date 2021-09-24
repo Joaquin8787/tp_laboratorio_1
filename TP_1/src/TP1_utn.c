@@ -84,11 +84,10 @@ int main(void) {
 
 	        break;
 	    case 5:
-	    	   opcionMenu = 5;
+
 	    	if(flagCase4 == 0){
-
 	        printf("Ha salido de la calculadora. \n");
-
+	        opcionMenu = 5;
 
 
 	    	}
@@ -99,6 +98,7 @@ int main(void) {
 
 	        break;
 	    }
+	    system("pause");
 	}while(opcionMenu != 5);
 	return EXIT_SUCCESS;
 }
