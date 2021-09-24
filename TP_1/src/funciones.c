@@ -67,7 +67,6 @@ void mostrarResultados(int* pResultadoSuma, int* pResultadoResta, float* pResult
         printf("La multiplicacion es: %d \n",*pResultadoMultiplicacion);
         printf("El factorial de (A) es:%I64u\n",*pResultadoFactorialA);
         printf("El factorial de (B) es:%I64u\n",*pResultadoFactorialB);
-
 }
 
 

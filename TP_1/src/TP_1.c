@@ -70,7 +70,6 @@ int main(void) {
 	        else{
 	            printf("Error. Ingrese el 2do operando para poder realizar los calculos\n");
 	        }
-
 	        break;
 	    case 4:
 	        if(flagCase3 == 0){
