@@ -12,12 +12,14 @@
 
 #endif /* EMPLOYEE_H_ */
 
-#define SIZE 51
+#define SIZE_STRING 51
+#define MINIMO_ID 1001
+#define MAXIMO_ID 2500
 
 typedef struct{
 	int id;
-	char name[SIZE];
-	char lastName[SIZE];
+	char name[SIZE_STRING];
+	char lastName[SIZE_STRING];
 	float salary;
 	int sector;
 	int isEmpty;

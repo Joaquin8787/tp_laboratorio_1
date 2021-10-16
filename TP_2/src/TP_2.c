@@ -13,8 +13,6 @@
 #include "joaquin.h"
 
 #define LEN 2
-#define MIN_ID 1001
-#define MAX_ID 2000
 
 int main()
 {
@@ -29,7 +27,7 @@ int main()
     //initEmployees(arrayEmployees, LEN);
 
     do{
-        eEmployee auxEmployee;
+    	eEmployee auxEmployee;
         menuOpciones(&opcion);
 
         switch(opcion)
@@ -38,10 +36,10 @@ int main()
         	printf(" ---- ALTA EMPLEADO ---- \n");
             auxEmployee.id = idEmployee;
             if(findEmployeeFree(arrayEmployees,LEN) != -1){
-            	if(joaquin_getString(auxEmployee.name,"Ingrese el nombre del empleado: ","ERROR!!! \n",51,10) == 1 &&
-                 joaquin_getString(auxEmployee.lastName,"Ingrese el apellido del empleado: ","ERROR!!! \n",51,10) == 1 &&
-                 joaquin_getNumeroFlotante(&auxEmployee.salary, "Ingrese el salario del empleado: ","ERROR!!! \n",1,500000,10) ==1 &&
-                 joaquin_getNumero(&auxEmployee.sector,"Ingrese el sector que corresponda al nuevo empleado (0-30): ","ERROR!!! \n",0,30,10) == 1 &&
+            	if(joaquin_getString(auxEmployee.name,"Ingrese el nombre del empleado: ","ERROR!!! \n",SIZE_STRING,10) == 1 &&
+                 joaquin_getString(auxEmployee.lastName,"Ingrese el apellido del empleado: ","ERROR!!! \n",SIZE_STRING,10) == 1 &&
+                 joaquin_getNumeroFlotante(&auxEmployee.salary, "Ingrese el salario del empleado: ","ERROR!!! \n",1,800000,10) ==1 &&
+                 joaquin_getNumero(&auxEmployee.sector,"Ingrese el sector que corresponda al nuevo empleado (0-30): ","ERROR!!! El sector debe ser entre 0 y 30 \n",0,30,10) == 1 &&
                  addEmployee(arrayEmployees, LEN, auxEmployee.id, auxEmployee.name, auxEmployee.lastName, auxEmployee.salary, auxEmployee.sector) == 0)
             	{
                  printf("El empleado ha sido cargado con exito!!! \n");
@@ -49,7 +47,7 @@ int main()
             	}
             	 else
             	{
-            	 printf("Hubo un error en la carga o no hay mas lugar para ingresar nuevos empleados.\n");
+            	 printf("Hubo algun error al dar de alta al empleado.\n");
             	}
             }
             else{
@@ -72,7 +70,7 @@ int main()
             {
             printf("              ---- BAJA EMPLEADO ---- \n");
             printEmployees(arrayEmployees, LEN);
-            joaquin_getNumero(&auxEmployee.id,"Ingrese el ID del empleado que desea dar de baja: ","ERROR!!! \n",MIN_ID,MAX_ID,2);
+            joaquin_getNumero(&auxEmployee.id,"Ingrese el ID del empleado que desea dar de baja: ","ERROR!!! el ID debe ser entre 1001 y 2500 \n",MINIMO_ID,MAXIMO_ID,10);
             if(findEmployeeById(arrayEmployees, LEN,auxEmployee.id) != -1)
             {
               if(removeEmployee(arrayEmployees, LEN, auxEmployee.id) == 0)
@@ -81,7 +79,7 @@ int main()
             	}
             	else
             	{
-            	printf("Hubo un error al dar de baja al empleado \n");
+            	printf("Hubo algun error al dar de baja al empleado \n");
             	}
             }
             else{
@@ -101,9 +99,12 @@ int main()
                 switch(menuInformes())
                 {
             case 1:
-            if(joaquin_getNumero(&orden,"En que orden desea mostrar a los empleados? (0-Descendente / 1-Ascendente): ", "ERROR!!! \n",0,1,2) == 1 &&
+               printEmployees(arrayEmployees, LEN);
+            if(joaquin_getNumero(&orden,"En que orden desea mostrar a los empleados? (0 = Descendente) / (1 = Ascendente): ", "ERROR!!! \n",0,1,10) == 1 &&
                sortEmployees(arrayEmployees,LEN,orden) == 0)
                {
+            	printf("\nORDENANDO . . . \n");
+            	getchar();
                 printEmployees(arrayEmployees, LEN);
                 }
                 else
@@ -113,6 +114,8 @@ int main()
 
             break;
             case 2:
+            	printf("\nREALIZANDO INFORMES ... \n");
+            	getchar();
                     reports(arrayEmployees,LEN);
             break;
                 }
@@ -123,18 +126,8 @@ int main()
             }
             getchar();
             break;
-        case 5:
-        	 if(arrayEmpty(arrayEmployees, LEN) == -1)
-        	 {
-            printEmployees(arrayEmployees, LEN);
-        	 }
-        	 else{
-        		 printf("Primero debe dar de alta algun empleado \n");
-        	 }
-            getchar();
-            break;
-        case 6:
-            joaquin_getCaracter(&confirm,"Esta seguro que quiere salir? (s/n): ","ERROR!!! \n",'n','s',2);
+            case 5:
+            joaquin_getCaracter(&confirm,"Esta seguro que quiere salir? (s/n): ","ERROR!!! \n",'n','s',5);
             break;
         }
         //system("cls");

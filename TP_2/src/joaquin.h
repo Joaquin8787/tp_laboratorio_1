@@ -16,9 +16,9 @@
 #include <ctype.h>
 #include <string.h>
 
-/// @brief imprime por pantalla una lisa de opciones de informes, le pide al usuario que ingrese una opcion y la retorna
+/// @brief imprime por pantalla una lista de opciones de informes, le pide al usuario que ingrese una opcion y la retorna
 ///
-/// @return int retonra la opcion ingresada si puedo guardarla, devuelve -1 si no lo logro
+/// @return int retorna la opcion ingresada si puedo guardarla, devuelve -1 si no lo logro
 int menuInformes(void);
 
 /// @brief imprime por pantalla una lista de opciones, le pide al usuario que ingrese una opcion y la guarda en una variable

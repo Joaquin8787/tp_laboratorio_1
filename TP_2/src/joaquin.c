@@ -33,9 +33,8 @@ int menuOpciones(int* opcion)
     printf("2) MODIFICAR \n");
     printf("3) BAJA \n");
     printf("4) INFORMAR \n");
-    printf("5) IMPRIMIR EMPLEADOS \n");
-    printf("6) SALIR \n");
-    if(joaquin_getNumero(opcion, "Ingrese una opcion: ","ERROR, opcion invalida.\n",1,6,3)==1)
+    printf("5) SALIR \n");
+    if(joaquin_getNumero(opcion, "Ingrese una opcion: ","ERROR, opcion invalida.\n",1,5,10)==1)
     {
     	retorno = 1;
     }

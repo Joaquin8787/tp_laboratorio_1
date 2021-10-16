@@ -79,8 +79,8 @@ int removeEmployee(eEmployee* list, int len, int id)
         {
         	printf(" ID    Nombre        Apellido             Salario   Sector\n");
             printOneEmployee(list[index]);
-            if(joaquin_getCaracter(&confirm,"Esta seguro que quiere eliminar este empleado? (s/n): ","ERROR!!! \n",'n','s',2) == 1 &&
-               confirm == 's')
+            joaquin_getCaracter(&confirm,"Esta seguro que quiere eliminar este empleado? (s/n): ","ERROR!!! \n",'n','s',5);
+            if(confirm == 's')
             {
                 list[index].isEmpty = 1;
                 retorno = 0;
@@ -162,7 +162,7 @@ int printEmployees(eEmployee* list, int len)
  */
 
 //ARRAY VACIO
-int arrayEmpty(eEmployee list[], int len){
+int arrayEmpty(eEmployee* list, int len){
     int retorno = 1;
     if(list != NULL && len > 0){
         for(int i=0; i< len;i++){
@@ -203,13 +203,13 @@ int modifyEmployee(eEmployee list[], int len)
     {
     	do{
         printEmployees(list,len);
-        joaquin_getNumero(&idEmployee,"Ingrese el ID del empleado que desea modificar: \n","ERROR!!! \n",1001,2000,2);
+        joaquin_getNumero(&idEmployee,"Ingrese el ID del empleado que desea modificar: \n","ERROR!!! el ID debe ser entre 1001 y 2500 \n",MINIMO_ID ,MAXIMO_ID ,10);
         index = findEmployeeById(list,len,idEmployee); //BUSCO EL EMPLEADO MEDIANTE EL ID
         while(index == -1)
         {
         	printf("ERROR. El id ingresado no existe \n");
         	printEmployees(list,len);
-        	joaquin_getNumero(&idEmployee,"Ingrese el ID del empleado que desea modificar: \n","ERROR!!! \n",1001,2000,2);
+        	joaquin_getNumero(&idEmployee,"Ingrese el ID del empleado que desea modificar: \n","ERROR!!! el ID debe ser entre 1001 y 2500 \n",MINIMO_ID ,MAXIMO_ID ,10);
         	index = findEmployeeById(list,len,idEmployee);
         }
                 option = menuModificaciones();
@@ -217,7 +217,7 @@ int modifyEmployee(eEmployee list[], int len)
                 {
                 case 1:
                 	printf(" ---- MODIFICACION DEL NOMBRE --- \n");
-                    if(joaquin_getString(auxEmployee.name,"Ingrese nuevo nombre: ","ERROR!!! \n",51,10) == 1)
+                    if(joaquin_getString(auxEmployee.name,"Ingrese nuevo nombre: ","ERROR!!! \n",SIZE_STRING,10) == 1)
                     {
                     	 strcpy(list[index].name,auxEmployee.name);
                     	 printf("Se modifico el nombre con exito!!!  \n");
@@ -226,7 +226,7 @@ int modifyEmployee(eEmployee list[], int len)
                     break;
                 case 2:
                 	printf(" ---- MODIFICACION DEL APELLIDO --- \n");
-                    if(joaquin_getString(auxEmployee.lastName,"Ingrese nuevo apellido: ","ERROR!!! \n",51,10) == 1)
+                    if(joaquin_getString(auxEmployee.lastName,"Ingrese nuevo apellido: ","ERROR!!! \n",SIZE_STRING,10) == 1)
                     {
                     	 strcpy(list[index].lastName,auxEmployee.lastName);
                     	 printf("Se modifico el apellido con exito!!!  \n");
@@ -235,7 +235,7 @@ int modifyEmployee(eEmployee list[], int len)
                     break;
                 case 3:
                 	printf(" ---- MODIFICACION DEL SALARIO --- \n");
-                    if(joaquin_getNumeroFlotante(&auxEmployee.salary,"Ingrese nuevo salario: ","ERROR!!! \n",1,999999,10) == 1)
+                    if(joaquin_getNumeroFlotante(&auxEmployee.salary,"Ingrese nuevo salario: ","ERROR!!! \n",1,800000,10) == 1)
                     {
                     	list[index].salary=auxEmployee.salary;
                        	printf("Se modifico el salario con exito!!!  \n");
@@ -245,7 +245,7 @@ int modifyEmployee(eEmployee list[], int len)
                     break;
                 case 4:
                 	printf(" ---- MODIFICACION DEL SECTOR --- \n");
-                    if(joaquin_getNumero(&auxEmployee.sector,"Ingrese nuevo sector (1-30): ","ERROR!!! \n",1,30,10) == 1)
+                    if(joaquin_getNumero(&auxEmployee.sector,"Ingrese nuevo sector (1-30): ","ERROR!!! el sector debe ser entre 1 y 30 \n",1,30,10) == 1)
                     {
                     	list[index].sector=auxEmployee.sector;
                     	printf("Se modifico el sector con exito!!! \n");
@@ -287,10 +287,13 @@ int reports(eEmployee* list, int len)
                 employeesHighSalary++;
             }
         }
-
+        printf("------------------------------------------------------------------\n");
+        printf("------------------------------------------------------------------\n");
         printf("El total de los salarios es de $ %.2f\n",acumuladorSalary);
         printf("El promedio de los salarios es de $ %.2f\n",averageSalary);
         printf("La cantidad de empleados que superan el salario promedio es de: %d\n",employeesHighSalary);
+        printf("------------------------------------------------------------------\n");
+        printf("------------------------------------------------------------------\n");
         retorno = 0;
     }
     return retorno;
