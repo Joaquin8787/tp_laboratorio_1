@@ -22,7 +22,11 @@ typedef struct{
 	int sector;
 	int isEmpty;
 }eEmployee;
-
+/// @brief traverses the array and checks if it is empty
+///
+/// @param list eEmployee* Pointer to array of employees
+/// @param len int Array length
+/// @return int Returns (1) if it is empty or (-1) if it is not
 int arrayEmpty(eEmployee list[], int len);
 
 /** \brief To indicate that all position in the array are empty,
@@ -117,5 +121,4 @@ void printOneEmployee(eEmployee anEmployee);
  * \return int option selected or (0) if too many invalid options entered.
  *
  */
-
 int reports(eEmployee* list, int len);

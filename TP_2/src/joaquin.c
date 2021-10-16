@@ -17,17 +17,12 @@ static int myGetsChar(char* cadena, int longitud);
 static int esCaracter(char* cadena, int limite);
 //GET NOMBRE
 static int getCadenaChar(char* pResultado);
-static int esNombre(char* cadena, int limite);
+static int esString(char* cadena, int limite);
 //GET NUMERO FLOTANTE
 static int getFloat(float* pResultado);
 static int esNumeroFlotante(char* cadena, int limite);
 
-//GET TEXTO ESPECIAL
-static int esTextoEspecial(char* cadena, int limite);
-static int getTextoEspecial(char* pResultado);
 //RESTRINGIR SU AMBITO A JOAQUIN.H
-
-/*******************************************************************************************************************************/
 
 int menuOpciones(int* opcion)
 {
@@ -39,16 +34,16 @@ int menuOpciones(int* opcion)
     printf("3) BAJA \n");
     printf("4) INFORMAR \n");
     printf("5) IMPRIMIR EMPLEADOS \n");
-    printf("5) SALIR \n");
-    if(joaquin_getNumero(opcion, "Ingrese una opcion: ","ERROR, opcion invalida.\n",1,5,3)==1)
+    printf("6) SALIR \n");
+    if(joaquin_getNumero(opcion, "Ingrese una opcion: ","ERROR, opcion invalida.\n",1,6,3)==1)
     {
     	retorno = 1;
     }
     return retorno;
 }
 
-/*******************************************************************************************************************************/
-int menuInformes()
+
+int menuInformes(void)
 {
     int retorno = -1;
 
@@ -63,7 +58,7 @@ int menuInformes()
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 int menuModificaciones()
 {
@@ -73,29 +68,15 @@ int menuModificaciones()
       printf("2) Apellido\n");
       printf("3) Salario\n");
       printf("4) Sector\n");
-      printf("4) Salir\n");
-    if(joaquin_getNumero(&retorno, "Ingrese la opcion que quiere modificar: ","ERROR, opcion invalida.\n",1,4,2) == 1)
+      printf("5) Salir\n");
+    if(joaquin_getNumero(&retorno, "Ingrese la opcion que quiere modificar: ","ERROR, opcion invalida.\n",1,5,2) == 1)
     {
         return retorno;
     }
     return retorno;
 }
 
-/*******************************************************************************************************************************/
 
-int menuModificacionesV()
-{
-    int retorno= -1;
-    printf("\nMENU DE MODIFICACIONES...\n");
-    printf("1) DESCRIPCION \n");
-    printf("2) KMS \n");
-    if(joaquin_getNumero(&retorno, "Ingrese una opcion: ","ERROR, opcion invalida.\n",1,2,10)==1)
-    {
-        return retorno;
-    }
-    return retorno;
-}
-/*******************************************************************************************************************************/
 
 int joaquin_getNumero(int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos)
 {
@@ -120,7 +101,7 @@ int joaquin_getNumero(int* pResultado, char* mensaje, char* mensajeError, int mi
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief pide al usuario ingresar un numero limita el tamaño de lo que se ingresa y si verifica que es un numero entero, convierte la cadena en entero y almacena el valor por referencia
  *
@@ -141,7 +122,7 @@ static int getInt(int* pResultado)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief Lee de stdin hasta que encuentra un '\n' o hasta que haya copiado en cadena un maximo de 'longitud - 1' caracteres.
  *
@@ -171,7 +152,7 @@ static int myGets(char* cadena, int longitud)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief Lee de stdin hasta que encuentra un '\n' o hasta que haya copiado en cadena un maximo de 'longitud - 1' caracteres.
  *
@@ -198,7 +179,7 @@ static int myGetsChar(char* cadena, int longitud)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief verifica si la cadena ingresada es numerica
  *
@@ -230,7 +211,7 @@ static int esNumerico(char* cadena, int limite)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 int joaquin_getCaracter(char* pResultado, char* mensaje,char* mensajeError, char opcion1, char opcion2, int reintentos)
 {
@@ -255,7 +236,7 @@ int joaquin_getCaracter(char* pResultado, char* mensaje,char* mensajeError, char
 	return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief pide al usuario ingresar un caracter limita el tamaño de lo que se ingresa y si verifica que es un caracter valido y almacena el valor por referencia
  *
@@ -276,7 +257,7 @@ static int getCharacter(char* pResultado)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief verifica si la cadena ingresada es un caracter
  *
@@ -299,7 +280,7 @@ static int esCaracter(char* cadena, int limite)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 int joaquin_getString(char* pResultado, char* mensaje, char* mensajeError, int sizeNombre, int reintentos)
 {
@@ -324,7 +305,7 @@ int joaquin_getString(char* pResultado, char* mensaje, char* mensajeError, int s
     return retorno;
 }
 
-/********************************************************************************************************************************/
+
 
 /** \brief pide al usuario ingresar un array de de caracteres, limita los caracteres validos y almacena el array por referencia
  *
@@ -337,7 +318,7 @@ static int getCadenaChar(char* pResultado)
     int retorno = -1;
     char bufferString[4096];
 
-    if(pResultado != NULL && !myGets(bufferString,sizeof(bufferString)) && esNombre(bufferString,sizeof(bufferString)))
+    if(pResultado != NULL && !myGets(bufferString,sizeof(bufferString)) && esString(bufferString,sizeof(bufferString)))
     {
         retorno=0;
         strcpy(pResultado,bufferString);
@@ -345,7 +326,7 @@ static int getCadenaChar(char* pResultado)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief verifica si la cadena ingresada es un nombre
  *
@@ -354,7 +335,7 @@ static int getCadenaChar(char* pResultado)
  * \return int Retorna 1 (verdadero) si la cadena es un nombre, 0 (falso) si no lo es o -1 en caso de error
  *
  */
-static int esNombre(char* cadena, int limite)
+static int esString(char* cadena, int limite)
 {
     int retorno=-1;
     if (cadena!= NULL && limite>0)
@@ -377,7 +358,7 @@ static int esNombre(char* cadena, int limite)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 int joaquin_getNumeroFlotante(float* pResultado, char* mensaje, char* mensajeError, float minimo, float maximo, int reintentos)
 {
@@ -401,7 +382,7 @@ int joaquin_getNumeroFlotante(float* pResultado, char* mensaje, char* mensajeErr
 	return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief pide al usuario ingresar un numero limita el tamaño de lo que se ingresa y si verifica que es un numero entero, convierte la cadena en entero y almacena el valor por referencia
  *
@@ -422,7 +403,7 @@ static int getFloat(float* pResultado)
     return retorno;
 }
 
-/*******************************************************************************************************************************/
+
 
 /** \brief verifica si la cadena ingresada es numerica
  *
@@ -460,84 +441,6 @@ static int esNumeroFlotante(char* cadena, int limite)
                 break;
             }
         }
-    }
-    return retorno;
-}
-
-/*******************************************************************************************************************************/
-
-int joaquin_getTextoEspecial(char* pResultado, char* mensaje, char* mensajeError, int sizeNombre, int reintentos)
-{
-    int retorno=-1;
-    char bufferNombre[sizeNombre];
-
-    if(pResultado!=NULL && mensaje!=NULL && mensajeError!=NULL && sizeNombre>0 && reintentos>=0)
-    {
-        do{
-            printf("%s",mensaje);
-            if(getTextoEspecial(bufferNombre)==0)
-            {
-                strcpy(pResultado,bufferNombre);
-				retorno = 0;
-				break;
-            }
-            reintentos--;
-            printf("%s",mensajeError);
-        }while(reintentos>=0);
-    }
-
-    return retorno;
-}
-
-/*******************************************************************************************************************************/
-
-/** \brief verifica si la cadena ingresada es un texto especcial. Acepta ciertos caracteres especiales ('-', '_', '@' y espacio) y numeros
- *
- * \param cadena char* cadena de caracteres a ser analizada
- * \param limite int tamaño de la cadena a analizar
- * \return int Retorna 1 (verdadero) si la cadena es un nombre, 0 (falso) si no lo es o -1 en caso de error
- *
- */
-static int esTextoEspecial(char* cadena, int limite)
-{
-    int retorno=-1;
-    if (cadena!= NULL && limite>0)
-    {
-        retorno = 1;
-        for(int i=0; i<limite && cadena[i]!='\0'; i++)
-        {
-            if(i==0 && cadena[i]==' ')
-            {
-                retorno=0;
-                break;
-            }
-            else if(cadena[i]!=' ' && (cadena[i]<'a' || cadena[i]>'z') && (cadena[i]<'A' || cadena[i]>'Z') && cadena[i]!='@' && cadena[i]!='-' && cadena[i]!='_' && (cadena[i]<'0' || cadena[i]>'9'))
-            {
-                retorno=0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
-/********************************************************************************************************************************/
-
-/** \brief pide al usuario ingresar un array de de caracteres (texto especial), limita los caracteres validos (con mas posibilidades que la funcion getCadenaChar() y almacena el array por referencia
- *
- * \param pResultado char* puntero al espacio en memoria donde se guardara el array obtenido
- * \return int retorna 0 si se guardo el array o -1 si no
- *
- */
-static int getTextoEspecial(char* pResultado)
-{
-    int retorno = -1;
-    char bufferString[4096];
-
-    if(pResultado != NULL && !myGets(bufferString,sizeof(bufferString)) && esTextoEspecial(bufferString,sizeof(bufferString)))
-    {
-        retorno=0;
-        strcpy(pResultado,bufferString);
     }
     return retorno;
 }
