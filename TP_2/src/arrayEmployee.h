@@ -29,7 +29,7 @@ typedef struct{
 /// @param list eEmployee* Pointer to array of employees
 /// @param len int Array length
 /// @return int Returns (1) if it is empty or (-1) if it is not
-int arrayEmpty(eEmployee list[], int len);
+int arrayEmpty(eEmployee* list, int len);
 
 /** \brief To indicate that all position in the array are empty,
  * this function put the flag (isEmpty) in TRUE in all
