@@ -42,6 +42,37 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
     return retorno;
 }
 
+int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+	int retorno = 1;
+	Employee* auxEmpleado;
+
+	int id;
+	char nombre[128];
+	int horasTrabajadas;
+	int sueldo;
+
+	if(pFile != NULL &&  pArrayListEmployee != NULL){
+
+		for(int i = 0;i<ll_len(pArrayListEmployee);i++){
+			auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
+			if(auxEmpleado != NULL){
+
+				if(employee_getId(auxEmpleado,&id) &&
+				employee_getNombre(auxEmpleado,nombre) &&
+				employee_getHorasTrabajadas(auxEmpleado,&horasTrabajadas)&&
+				employee_getSueldo(auxEmpleado,&sueldo))
+				{
+					fprintf(pFile,"%d %s %d %d \n",id,nombre,horasTrabajadas,sueldo);
+					retorno = 0;
+				}
+			}
+		}
+
+	}
+    return retorno;
+}
+
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
  *
  * \param path char*
@@ -65,45 +96,11 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 			                break;
 			              }
 			            nuevoEmpleado = employee_newParametrosCorrespondientes(&auxEmpleado.id, auxEmpleado.nombre,&auxEmpleado.horasTrabajadas,&auxEmpleado.sueldo); //CONSTRUYO UN NUEVO EMPLEADO
-			            if(nuevoEmpleado != NULL){
-			            	ll_add(pArrayListEmployee, nuevoEmpleado); //AGREGO AL LINKEDLIST
-			            }
+			            ll_add(pArrayListEmployee, nuevoEmpleado); //AGREGO AL LINKEDLIST
 
+			            retorno = 0;
 			        }
-			    retorno = 0;
 		}
-    return retorno;
-}
-//PARSER DE ESCRITURA
-int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
-{
-	int retorno = 1;
-	Employee* auxEmpleado;
-
-	int id;
-	char nombre[128];
-	int horasTrabajadas;
-	int sueldo;
-
-	if(pFile != NULL &&  pArrayListEmployee != NULL){
-		fprintf(pFile, "id,nombre,horasTrabajadas,sueldo\n");
-		for(int i = 0;i<ll_len(pArrayListEmployee);i++){
-			auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
-			if(auxEmpleado != NULL){
-				printf("todo piola\n");
-				if(employee_getId(auxEmpleado,&id)==0 &&
-				employee_getNombre(auxEmpleado,nombre)==0 &&
-				employee_getHorasTrabajadas(auxEmpleado,&horasTrabajadas)==0&&
-				employee_getSueldo(auxEmpleado,&sueldo)==0)
-				{
-					printf("%p",pFile);
-					fprintf(pFile,"%d %s %d %d \n",id,nombre,horasTrabajadas,sueldo);
-					retorno = 0;
-				}
-			}
-		}
-
-	}
     return retorno;
 }
 

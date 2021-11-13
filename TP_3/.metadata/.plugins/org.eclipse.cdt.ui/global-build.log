@@ -1,5 +1,86 @@
-16:40:55 **** Incremental Build of configuration Debug for project tp3_windows ****
+17:26:44 **** Incremental Build of configuration Debug for project tp3_windows ****
 Info: Internal Builder is used for build
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
 gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
 Info: Nothing to build for tp3_windows
+17:27:20 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+..\Controller.c: In function 'controller_saveAsText':
+..\Controller.c:342:18: warning: passing argument 1 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  342 |   auxP = _wfopen(path,"w");//Lo abro para escritura
+      |                  ^~~~
+      |                  |
+      |                  char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+..\Controller.c:342:23: warning: passing argument 2 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  342 |   auxP = _wfopen(path,"w");//Lo abro para escritura
+      |                       ^~~
+      |                       |
+      |                       char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+17:28:01 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+..\Controller.c: In function 'controller_saveAsText':
+..\Controller.c:342:18: warning: passing argument 1 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  342 |   auxP = _wfopen(path,"w");//Lo abro para escritura
+      |                  ^~~~
+      |                  |
+      |                  char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+..\Controller.c:342:23: warning: passing argument 2 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  342 |   auxP = _wfopen(path,"w");//Lo abro para escritura
+      |                       ^~~
+      |                       |
+      |                       char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+17:29:11 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+17:29:42 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+17:30:01 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+..\Controller.c: In function 'controller_saveAsText':
+..\Controller.c:367:25: warning: passing argument 1 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  367 |         pFile = _wfopen(path, "w");
+      |                         ^~~~
+      |                         |
+      |                         char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+..\Controller.c:367:31: warning: passing argument 2 of '_wfopen' from incompatible pointer type [-Wincompatible-pointer-types]
+  367 |         pFile = _wfopen(path, "w");
+      |                               ^~~
+      |                               |
+      |                               char *
+In file included from ..\Controller.c:1:
+c:\mingw\include\stdio.h:1074:44: note: expected 'const wchar_t *' {aka 'const short unsigned int *'} but argument is of type 'char *'
+ 1074 | _CRTIMP __cdecl __MINGW_NOTHROW  FILE    * _wfopen (const wchar_t *, const wchar_t *);
+      |                                            ^~~~~~~
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+17:31:26 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 

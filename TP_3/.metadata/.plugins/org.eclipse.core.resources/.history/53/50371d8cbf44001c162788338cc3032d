@@ -90,13 +90,11 @@ int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 		for(int i = 0;i<ll_len(pArrayListEmployee);i++){
 			auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
 			if(auxEmpleado != NULL){
-				printf("todo piola\n");
 				if(employee_getId(auxEmpleado,&id)==0 &&
 				employee_getNombre(auxEmpleado,nombre)==0 &&
 				employee_getHorasTrabajadas(auxEmpleado,&horasTrabajadas)==0&&
 				employee_getSueldo(auxEmpleado,&sueldo)==0)
 				{
-					printf("%p",pFile);
 					fprintf(pFile,"%d %s %d %d \n",id,nombre,horasTrabajadas,sueldo);
 					retorno = 0;
 				}

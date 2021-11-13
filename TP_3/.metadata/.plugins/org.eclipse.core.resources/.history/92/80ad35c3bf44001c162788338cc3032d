@@ -96,7 +96,7 @@ int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 				employee_getHorasTrabajadas(auxEmpleado,&horasTrabajadas)==0&&
 				employee_getSueldo(auxEmpleado,&sueldo)==0)
 				{
-					printf("%p",pFile);
+					printf("%p"pFile);
 					fprintf(pFile,"%d %s %d %d \n",id,nombre,horasTrabajadas,sueldo);
 					retorno = 0;
 				}

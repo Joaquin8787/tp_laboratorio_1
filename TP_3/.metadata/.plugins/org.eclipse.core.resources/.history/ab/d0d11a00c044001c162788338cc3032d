@@ -334,13 +334,13 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
 		FILE* auxP;
 		if(pArrayListEmployee != NULL){
-		auxP = fopen(path,"w");//Lo abro para escritura
+		auxP = _wfopen(path,"w");//Lo abro para escritura
+		printf("%p",auxP);
 		if(auxP != NULL){
 		parser_EmployeeWriteFromText(auxP ,pArrayListEmployee);
 		retorno = 0;

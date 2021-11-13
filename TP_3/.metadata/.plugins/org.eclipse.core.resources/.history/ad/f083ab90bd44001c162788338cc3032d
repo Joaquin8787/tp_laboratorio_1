@@ -334,7 +334,6 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
