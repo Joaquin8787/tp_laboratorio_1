@@ -34,7 +34,8 @@ int buscarEmpleadoId(int* idABuscar, LinkedList* pArrayListEmployee,int tam){
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     int retorno = 1;
-	FILE* auxP = fopen(path,"r"); //LO LEO
+	FILE* auxP;
+	auxP = fopen(path,"r"); //LO LEO
 	if(auxP != NULL){
 		parser_EmployeeFromText(auxP ,pArrayListEmployee);
 		retorno = 0;
@@ -62,11 +63,10 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 			retorno = 0;
 		}
 		else{
-			printf("No se pudo leer el archivo");
+			printf("No se pudo leer el archivo\n");
 		}
 		fclose(auxP);
 	    return retorno;
-    return 1;
 }
 
 /** \brief Alta de empleados
@@ -76,11 +76,10 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_addEmployee(LinkedList* pArrayListEmployee)
+int controller_addEmployee(LinkedList* pArrayListEmployee,int* id)
 {
 	int retorno = 1;
 
-	int id = 1000;
 	char nombre[128];
 	int horasTrabajadas;
 	int sueldo;
@@ -91,10 +90,8 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 		if(joaquin_getString(nombre,"Ingrese el nombre del empleado","ERROR!!!\n",138,10)==1
 		&&joaquin_getNumero(&horasTrabajadas,"Ingrese las horas trabajadas del empleado","ERROR!!!\n",1,300,10)==1
 		&&joaquin_getNumero(&sueldo,"Ingrese el sueldo del empleado","ERROR!!!\n",1,10000000,10)==1){
-
-			id =  ll_len(pArrayListEmployee);
-			id++;
-			nuevoEmpleado = employee_newParametrosCorrespondientes(&id,nombre,&horasTrabajadas,&sueldo);
+			(*id)++;
+			nuevoEmpleado = employee_newParametrosCorrespondientes(id,nombre,&horasTrabajadas,&sueldo);
 		}
 		if(nuevoEmpleado != NULL){
 			ll_add(pArrayListEmployee, nuevoEmpleado);
@@ -120,7 +117,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 	int posicion;
 	char seguir = 's';
 
-	char auxNombre[128]; //NO SE PORQUE ME PIDE INICIALIZARLO
+	char auxNombre[128];
 	int auxHorasTrabajadas;
 	int auxSueldo;
 	Employee* empleadoParaModificar;
@@ -138,7 +135,6 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 		}
 			if(posicion != 1){
 				//TOMO EL EMPLEADO DE LA LISTA PARA MODIFICARLO
-				printf("%d",posicion);
 				empleadoParaModificar = (Employee*) ll_get(pArrayListEmployee,posicion);
 				printf("------------------------------------------------------------------------\n");
 				printf("                       EMPLEADO A MODIFICAR                             \n");
@@ -153,18 +149,21 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 					printf("---- NOMBRE ----\n");
 					if(joaquin_getString(auxNombre,"Ingrese el nombre del empleado","ERROR!!!\n",138,10)==1){
 					employee_setNombre(empleadoParaModificar,auxNombre);
+					printf("Se ha modificado el nombre con exito!!!\n");
 					}
 					break;
 					case 2:
 					printf("---- HORAS TRABAJADAS ----\n");
 					if(joaquin_getNumero(&auxHorasTrabajadas,"Ingrese las horas trabajadas del empleado","ERROR!!!\n",1,300,10)==1){
 					employee_setHorasTrabajadas(empleadoParaModificar,auxHorasTrabajadas);
+					printf("Se han modificado las horas trabajadas con exito!!!\n");
 					}
 					break;
 					case 3:
 					printf("---- SUELDO ----\n");
 					if(joaquin_getNumero(&auxSueldo,"Ingrese las horas trabajadas del empleado","ERROR!!!\n",1,300,10)==1){
 					employee_setSueldo(empleadoParaModificar,auxSueldo);
+					printf("Se ha modificado el sueldo con exito!!!\n");
 					}
 					break;
 					}
@@ -220,7 +219,7 @@ do{
 				joaquin_getCaracter(&confirmar,"Esta seguro que quiere eliminar este empleado? (s/n): ","ERROR!!! \n",'n','s',5);
 				if(confirmar == 's'){
 				ll_remove(pArrayListEmployee,posicion);
-				free(empleadoParaEliminar);
+				employee_delete(empleadoParaEliminar);
 				printf("Se ha eliminado el empleado con exito!!!\n");
 				}
 			}
@@ -330,17 +329,18 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-	 int retorno = 1;
-	 FILE* auxP= fopen(path,"w"); //Lo abro para escritura
-		if(auxP != NULL){
-			parser_EmployeeWriteFromText(auxP ,pArrayListEmployee);
-			retorno = 0;
-		}
-		else{
-			printf("No se pudo escribir en el archivo");
-		}
-		fclose(auxP);
-	    return retorno;
+	int retorno = 1;
+		FILE* auxP = fopen(path,"w");
+		//Lo abro para escritura
+				if(auxP != NULL){
+					parser_EmployeeWriteFromText(auxP ,pArrayListEmployee);
+					retorno = 0;
+				}
+				else{
+					printf("No se pudo escribir en el archivo \n");
+				}
+				fclose(auxP);
+			    return retorno;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -353,7 +353,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
-			FILE* auxP = fopen(path,"wb"); //Lo abro para escritura
+	FILE* auxP = fopen(path,"wb"); //Lo abro para escritura
 			if(auxP != NULL){
 				parser_EmployeeWriteFromBinary(auxP ,pArrayListEmployee);
 				retorno = 0;

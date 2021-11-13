@@ -1,4 +1,25 @@
-01:00:54 **** Incremental Build of configuration Debug for project tp3_windows ****
+12:32:26 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Employee.o "..\\Employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o parser.o "..\\parser.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+Info: Nothing to build for tp3_windows
+Info: Nothing to build for tp3_windows
+Info: Nothing to build for tp3_windows
+12:41:05 **** Incremental Build of configuration Debug for project tp3_windows ****
 Info: Internal Builder is used for build
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
-gcc "-LC:\\Users\\Usuario\\Desktop\\TP3_JoaquinEsteban\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+12:51:46 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 
+Info: Nothing to build for tp3_windows
+12:55:39 **** Incremental Build of configuration Debug for project tp3_windows ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o joaquin.o "..\\joaquin.c" 
+gcc "-LC:\\Users\\Usuario\\Desktop\\TP_3\\tp3_windows" -o tp3_windows.exe Controller.o Employee.o joaquin.o main.o parser.o -lLinkedList 

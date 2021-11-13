@@ -54,7 +54,7 @@ int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 	if(pFile != NULL &&  pArrayListEmployee != NULL){
 
 		for(int i = 0;i<ll_len(pArrayListEmployee);i++){
-			auxEmpleado = ll_get(pArrayListEmployee,i);
+			auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
 			if(auxEmpleado != NULL){
 
 				if(employee_getId(auxEmpleado,&id) &&
@@ -91,7 +91,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 			    while(!feof(pFile)) //RECORRO HASTA QUE LEA CADA LINEA DEL ARCHIVO
 			        {
 			            cantidad = fread(&auxEmpleado,sizeof(Employee),1,pFile);
-			            if(cantidad < 1){ //VERIFICO QUE HAYA PODIDO LEVANTAR CADA CAMPO
+			            if(cantidad < 1){ //VERIFICO QUE HAYA PODIDO LEVANTAR El EMPLEADO
 			                break;
 			              }
 			            nuevoEmpleado = employee_newParametrosCorrespondientes(&auxEmpleado.id, auxEmpleado.nombre,&auxEmpleado.horasTrabajadas,&auxEmpleado.sueldo); //CONSTRUYO UN NUEVO EMPLEADO

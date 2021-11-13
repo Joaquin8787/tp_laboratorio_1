@@ -24,7 +24,8 @@ int main()
 	setbuf(stdout,NULL);
 
     int option = 0;
-    int* idAutoincremental;
+    int idAutoincremental;
+    char confirmar;
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do{
@@ -33,7 +34,7 @@ int main()
             case 1:
                 if(controller_loadFromText("data.csv",listaEmpleados)==0){
                 	printf("Se cargaron los datos de los empleados con exito!!! \n");
-
+                    employee_getId(ll_get(listaEmpleados,(ll_len(listaEmpleados)-1)),&idAutoincremental);
                 }
                 else{
                 	printf("No se puedieron cargar los datos de los empleados... \n");
@@ -43,6 +44,7 @@ int main()
             case 2:
             	if(controller_loadFromBinary("data.bin",listaEmpleados) == 0){
             	printf("Se cargaron los datos de los empleados con exito!!! \n");
+            	employee_getId(ll_get(listaEmpleados,(ll_len(listaEmpleados)-1)),&idAutoincremental);
             	}
             	else{
             	printf("No se puedieron cargar los datos de los empleados... \n");
@@ -50,7 +52,7 @@ int main()
             break;
             case 3:
             	if(!ll_isEmpty(listaEmpleados)){
-            	 if(controller_addEmployee(listaEmpleados)== 0){
+            	 if(controller_addEmployee(listaEmpleados,&idAutoincremental)== 0){
             		printf("Se puedo dar de alta el empleado con exito\n");
             		}
             		else{
@@ -58,7 +60,7 @@ int main()
             		}
             	}
             	else{
-            		printf("Primero debe cargar los empleados con la opcion 1\n");
+            		printf("Primero debe cargar los empleados con (opcion 1 / opcion 2) para poder dar de alta otro empleado\n");
             	}
                 getchar();
             break;
@@ -93,21 +95,22 @@ int main()
             	 controller_sortEmployee(listaEmpleados);
             	 }
             	 else{
-            	 printf("Primero debe cargar algun empleado para poder mostrarlo\n");
+            	 printf("Debe tener a los empleados cargados para poder ordenarlos\n");
             	}
             	getchar();
             break;
             case 8:
             if(!ll_isEmpty(listaEmpleados)){
-            if(controller_saveAsText("data.csv" , listaEmpleados) == 0){
+            if(controller_saveAsText("data.csv",listaEmpleados) == 0){
             printf("Guardado en modo texto con exito!!!\n");
+
             }
             else{
             	printf("No se pudieron guardar los empleados\n");
             }
              }
              else{
-             printf("Primero debe cargar algun empleado para poder mostrarlo\n");
+             printf("Primero debe cargar algun empleado para poder guardarlo\n");
              }
              getchar();
              break;
@@ -118,15 +121,19 @@ int main()
             	}
             	}
             	else{
-            	printf("Primero debe cargar algun empleado para poder mostrarlo\n");
+            	printf("Primero debe cargar algun empleado para poder guardarlo\n");
             	}
             	getchar();
             	break;
             case 10:
+            joaquin_getCaracter(&confirmar,"Esta seguro que quiere salir del programa? (s/n): ","ERROR!!! \n",'n','s',5);
+            if(confirmar == 's'){
             option = 10;
+            }
             break;
         }
     }while(option != 10);
+    printf("Usted ha salido del programa...\n");
     return 0;
 }
 

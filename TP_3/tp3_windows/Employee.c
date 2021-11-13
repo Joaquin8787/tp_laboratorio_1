@@ -5,6 +5,16 @@
 #include "parser.h"
 #include "joaquin.h"
 
+int employee_delete(Employee* this)
+{
+    int retorno=0;
+    if(this!=NULL)
+    {
+        free(this);
+        retorno=1;
+    }
+    return retorno;
+}
 Employee* employee_new(){
 	Employee* nuevoEmpleado = NULL;
 	nuevoEmpleado = (Employee*)malloc(sizeof(Employee));
@@ -29,9 +39,8 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 			employee_setNombre(nuevoEmpleado,nombreStr)==1||
 			employee_setHorasTrabajadas(nuevoEmpleado,atoi(horasTrabajadasStr))==1||
 			employee_setSueldo(nuevoEmpleado,atoi(sueldoStr))==1){
-
 				printf("NO SE PUDO CARGAR EL EMPLEADO PORQUE FALLO ALGUN SETTER\n"); //DEBUG
-				free(nuevoEmpleado);
+				employee_delete(nuevoEmpleado);
 				nuevoEmpleado = NULL;
 
 			}
@@ -44,15 +53,14 @@ Employee* employee_newParametrosCorrespondientes(int* id,char* nombre,int* horas
 	Employee* nuevoEmpleado = NULL;
 		if(id != NULL && nombre != NULL && horasTrabajadas != NULL && sueldo != NULL){
 			nuevoEmpleado = employee_new();
-
 			if(nuevoEmpleado != NULL){
-				if(employee_setId(nuevoEmpleado, *id)==1||
+				if(employee_setId(nuevoEmpleado,(*id))==1||
 				employee_setNombre(nuevoEmpleado,nombre)==1||
 				employee_setHorasTrabajadas(nuevoEmpleado,*horasTrabajadas)==1||
 				employee_setSueldo(nuevoEmpleado,*sueldo)==1){
 
 					printf("NO SE PUDO CARGAR EL EMPLEADO PORQUE FALLO ALGUN SETTER\n"); //DEBUG
-					free(nuevoEmpleado);
+					employee_delete(nuevoEmpleado);
 					nuevoEmpleado = NULL;
 				}
 			}
