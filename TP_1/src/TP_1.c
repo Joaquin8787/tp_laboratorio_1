@@ -34,8 +34,8 @@ int main(void) {
 	int resultadoResta;
 	int resultadoMultiplicacion;
 	float resultadoDivision;
-	unsigned long long int resultadoFactorialA;
-	unsigned long long int resultadoFactorialB;
+	long long int resultadoFactorialA;
+	long long int resultadoFactorialB;
 
 	do{
 
@@ -66,6 +66,7 @@ int main(void) {
 	        resultadoFactorialA = factorial(operandoA);
 	        resultadoFactorialB = factorial(operandoB);
 	        flagCase3 = 0;
+
 	        }
 	        else{
 	            printf("Error. Ingrese el 2do operando para poder realizar los calculos\n");

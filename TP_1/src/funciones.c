@@ -65,8 +65,20 @@ void mostrarResultados(int* pResultadoSuma, int* pResultadoResta, float* pResult
         printf("La division es: %.3f \n",*pResultadoDivision);
         }
         printf("La multiplicacion es: %d \n",*pResultadoMultiplicacion);
-        printf("El factorial de (A) es:%I64u\n",*pResultadoFactorialA);
-        printf("El factorial de (B) es:%I64u\n",*pResultadoFactorialB);
+
+        if(*pResultadoFactorialA != -1){
+        	printf("El factorial de (A) es:%I64u\n",*pResultadoFactorialA);
+        }
+        else{
+        	printf("No se pudo realizar el factorial de (A) ya que es un numero negativo\n");
+        }
+        if(*pResultadoFactorialB != -1){
+        	printf("El factorial de (B) es:%I64u\n",*pResultadoFactorialB);
+        }
+        else{
+        printf("No se pudo realizar el factorial de (B) ya  que se ingreso un numero negativo\n");
+        }
+
 }
 
 
@@ -110,13 +122,19 @@ int multiplicacion(int num1, int num2, int* resultado){
 	}
 return retorno;
 }
-unsigned long long int factorial(int numero){
-unsigned long long int fact;
-if(numero == 0 || numero == 1){
-    fact = 1;
+ long long int factorial(int numero){
+ long long int fact;
+
+if(numero >= 0){ //VALIDO SI ES NEGATIVO
+	if(numero == 0){
+	    fact = 1;
+	}
+	else{
+	    fact = numero * factorial(numero - 1);
+	}
 }
 else{
-    fact = numero * factorial(numero - 1);
+	fact = -1;
 }
 return fact;
 

@@ -36,7 +36,7 @@ void cargarOperador(int* operando);
 /// @param ResultadoFactorialB long long int valor del resultado de la operacion factorial del segundo operando
 /// @param retornoDivision int valor del retorno de la funcion division que se utiliza para saber si se pudo realizar la operacion o si se ingreso algun 0 en cualquiera de los 2 operandos
 /// @return void
-void mostrarResultados(int* pResultadoSuma, int* pResultadoResta, float* pResultadoDivision, int* pResultadoMultiplicacion, unsigned long long int* ResultadoFactorialA, unsigned long long int* ResultadoFactorialB, int* retornoDivision);
+void mostrarResultados(int* pResultadoSuma, int* pResultadoResta, float* pResultadoDivision, int* pResultadoMultiplicacion, long long int* ResultadoFactorialA, long long int* ResultadoFactorialB, int* retornoDivision);
 
 //FUNCIONES OPERACIONES MATEMATICAS
 /// @brief realiza la suma entre dos enteros y pasa el resultado por referencia
