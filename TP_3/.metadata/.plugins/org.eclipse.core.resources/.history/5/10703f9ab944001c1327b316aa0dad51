@@ -73,6 +73,8 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 		}
 		fclose(auxP);
 	}
+
+
 	    return retorno;
 }
 

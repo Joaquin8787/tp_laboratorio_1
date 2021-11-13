@@ -35,7 +35,9 @@ int main()
             	if(!ll_isEmpty(listaEmpleados)){
             		ll_clear(listaEmpleados);
             	}
-
+            	else{
+            		break;
+            	}
             	if(controller_loadFromText("data.csv",listaEmpleados)==0){
             	printf("Se cargaron los datos de los empleados con exito!!! \n");
             	employee_getId(ll_get(listaEmpleados,(ll_len(listaEmpleados)-1)),&idAutoincremental);
@@ -46,10 +48,13 @@ int main()
                 getchar();
                 break;
             case 2:
-
             	if(!ll_isEmpty(listaEmpleados)){
-            	 ll_clear(listaEmpleados);
-            	 }
+            	            		ll_clear(listaEmpleados);
+            	            	}
+            	            	else{
+            	            		break;
+            	            	}
+            	if(ll_clear(listaEmpleados)){
             		if(controller_loadFromBinary("data.bin",listaEmpleados) == 0){
             		printf("Se cargaron los datos de los empleados con exito!!! \n");
             		employee_getId(ll_get(listaEmpleados,(ll_len(listaEmpleados)-1)),&idAutoincremental);
@@ -57,7 +62,7 @@ int main()
             		else{
             		printf("No se puedieron cargar los datos de los empleados... \n");
             		}
-
+            	}
             getchar();
             break;
             case 3:

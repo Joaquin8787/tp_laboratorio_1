@@ -61,18 +61,15 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	 int retorno = 1;
-	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-		auxP = fopen(path,"rb");//LO LEO EN MODO BINARIO
+		FILE* auxP = fopen(path,"rb"); //LO LEO EN MODO BINARIO
 		if(auxP != NULL){
-		parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
-		retorno = 0;
+			parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
+			retorno = 0;
 		}
 		else{
-		printf("No se pudo leer el archivo\n");
+			printf("No se pudo leer el archivo\n");
 		}
 		fclose(auxP);
-	}
 	    return retorno;
 }
 

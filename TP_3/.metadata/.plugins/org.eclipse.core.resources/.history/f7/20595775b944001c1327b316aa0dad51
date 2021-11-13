@@ -32,6 +32,7 @@ int buscarEmpleadoId(int* idABuscar, LinkedList* pArrayListEmployee,int tam){
  *
  */
 
+/*
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     int retorno = 1;
@@ -49,7 +50,19 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 	}
     return retorno;
 }
+*/
+int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
+{
+    FILE* p;
 
+    if(path != NULL && pArrayListEmployee != NULL){
+        p = fopen(path,"r");
+        parser_EmployeeFromText(p,pArrayListEmployee);
+
+
+    }
+    return 1;
+}
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
  *
@@ -61,18 +74,15 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	 int retorno = 1;
-	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-		auxP = fopen(path,"rb");//LO LEO EN MODO BINARIO
+		FILE* auxP = fopen(path,"rb"); //LO LEO EN MODO BINARIO
 		if(auxP != NULL){
-		parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
-		retorno = 0;
+			parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
+			retorno = 0;
 		}
 		else{
-		printf("No se pudo leer el archivo\n");
+			printf("No se pudo leer el archivo\n");
 		}
 		fclose(auxP);
-	}
 	    return retorno;
 }
 

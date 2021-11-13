@@ -10,7 +10,6 @@
  * \return int
  *
  */
-
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
@@ -42,7 +41,6 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 	}
     return retorno;
 }
-
 int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
@@ -81,7 +79,7 @@ int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
+/*int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
 	int cantidad;
@@ -104,7 +102,44 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 		}
     return retorno;
 }
+*/
+int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+    int cant;
+    int cargados = 0;
+    Employee auxEmpleado;
+    Employee* pEmpleado;
+    if(pFile != NULL){
+         //cant = fread(auxEmpleado,sizeof(Employee),1,pFile);
+         do{
+            cant = fread(&auxEmpleado,sizeof(Employee),1,pFile);
+            pEmpleado = employee_new();
+            if(cant == 1 && pEmpleado != NULL){
+                if( employee_setId(pEmpleado,auxEmpleado.id) &&
+                    employee_setNombre(pEmpleado,auxEmpleado.nombre) &&
+                    employee_setHorasTrabajadas(pEmpleado,auxEmpleado.horasTrabajadas) &&
+                    employee_setSueldo(pEmpleado,auxEmpleado.sueldo) )
+                {
+                     ll_add(pArrayListEmployee,pEmpleado);
+                     cargados++;
+                }else{
+                    employee_delete(pEmpleado);
+                }
+            }
 
+        }while(!feof(pFile));
+        if(cargados){
+            printf(" -- Loaded sucessfully :) -- \n");
+        }else{
+            printf(" -- File is empty --\n");
+        }
+        fclose(pFile);
+    }else{
+        printf("Error opening file\n");
+    }
+
+    return cargados;
+}
 int parser_EmployeeWriteFromBinary(FILE* pFile , LinkedList* pArrayListEmployee){
 	int retorno = 1;
 	Employee* auxEmpleado;

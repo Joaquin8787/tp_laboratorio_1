@@ -31,13 +31,11 @@ int buscarEmpleadoId(int* idABuscar, LinkedList* pArrayListEmployee,int tam){
  * \return int
  *
  */
-
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     int retorno = 1;
 	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-	auxP = fopen(path,"r");//LO LEO
+	auxP = fopen(path,"r"); //LO LEO
 	if(auxP != NULL){
 		parser_EmployeeFromText(auxP ,pArrayListEmployee);
 		retorno = 0;
@@ -46,10 +44,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 		printf("No se pudo leer el archivo");
 	}
 	fclose(auxP);
-	}
     return retorno;
 }
-
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
  *
@@ -61,18 +57,15 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	 int retorno = 1;
-	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-		auxP = fopen(path,"rb");//LO LEO EN MODO BINARIO
+		FILE* auxP = fopen(path,"rb"); //LO LEO EN MODO BINARIO
 		if(auxP != NULL){
-		parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
-		retorno = 0;
+			parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
+			retorno = 0;
 		}
 		else{
-		printf("No se pudo leer el archivo\n");
+			printf("No se pudo leer el archivo\n");
 		}
 		fclose(auxP);
-	}
 	    return retorno;
 }
 
@@ -270,61 +263,55 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-	int retorno = -1;
-	int order;
-	if(pArrayListEmployee != NULL){
-		switch(menuOrdenamiento())
-				{
-			case 1:
-				  order = menuOrder();
-				  printf("ORDENANDO...\n");
-            	  if(!ll_sort(pArrayListEmployee,employee_compareById,order)){
-            		  retorno = 1;
-            		  printf("Lista ordenada!!!\n");
-            	  }
-            	  else{
-            	  printf("Hubo algun problema al ordenar la lista\n");
-            	  }
-			break;
-			case 2:
-				  order = menuOrder();
-				  printf("ORDENANDO...\n");
-				  if(!ll_sort(pArrayListEmployee,employee_compareByNombre,order)){
-					  retorno = 1;
-					  printf("Lista ordenada!!!\n");
-				   }
-				  else{
-				  printf("Hubo algun problema al ordenar la lista\n");
-				  }
-			break;
-			case 3:
-				  order = menuOrder();
-				  printf("ORDENANDO...\n");
-				  if(!ll_sort(pArrayListEmployee,employee_compareByHorasTrabajadas,order)){
-				  retorno = 1;
-				  printf("Lista ordenada!!!\n");
-				  }
-				  else{
-				  printf("Hubo algun problema al ordenar la lista\n");
-				  }
-			break;
-			case 4:
-				  order = menuOrder();
-				  printf("ORDENANDO...\n");
-				  if(!ll_sort(pArrayListEmployee,employee_compareBySueldo,order)){
-				    retorno = 1;
-				    printf("Lista ordenada!!!\n");
-				  }
-				  else{
-					  printf("Hubo algun problema al ordenar la lista\n");
-				  }
-			break;
-			case 5:
-			break;
-		}
+	int status = 0;
+	    int opcion;
+	    int orden;
+	    status = joaquin_getNumero(&opcion,"\n\t 1) Order by Name \n\t 2) Order by ID \n\t 3) Order by Worked Hours \n\t 4) Order by salary \n\t 5) Back \n -- Enter order option:","-!- Invalid option -!-\n",1,5,10);
 
-	}
-    return retorno;
+	    if(status){
+	        switch(opcion){
+	            case 1:
+	                status = joaquin_getNumero(&orden,"\n -- Value Order \n\t 1) Ascendant \n\t 2) Descendant \n -- Enter value order option: ","-!- Invalid option -!-\n",1,2,10);
+	                printf("-- Loading.... --\n");
+	                if(orden == 2){ orden = 0; }
+	                if( !ll_sort(pArrayListEmployee,employee_compareByNombre, orden) ){
+	                    printf(" -- List ordered --\n\n");
+	                    status = 1;
+	                }
+	                break;
+	            case 2:
+	                status = joaquin_getNumero(&orden,"\n -- Value Order \n\t 1) Ascendant \n\t 2) Descendant \n -- Enter value order option: ","-!- Invalid option -!-\n",1,2,10);
+	                printf("-- Loading.... --\n");
+	                if(orden == 2){ orden = 0; }
+	                if( !ll_sort(pArrayListEmployee,employee_compareById, orden) ){
+	                    printf(" -- List ordered --\n\n");
+	                    status = 1;
+	                }
+	                break;
+	            case 3:
+	                status = joaquin_getNumero(&orden,"\n -- Value Order \n\t 1) Ascendant \n\t 2) Descendant \n -- Enter value order option: ","-!- Invalid option -!-\n",1,2,10);
+	                printf("-- Loading.... --\n");
+	                if(orden == 2){ orden = 0; }
+	                if( !ll_sort(pArrayListEmployee,employee_compareByHorasTrabajadas, orden) ){
+	                    printf(" -- List ordered --\n\n");
+	                    status = 1;
+	                }
+	                break;
+	            case 4:
+	                status = joaquin_getNumero(&orden,"\n -- Value Order \n\t 1) Ascendant \n\t 2) Descendant \n -- Enter value order option: ","-!- Invalid option -!-\n",1,2,10);
+	                printf("-- Loading.... --\n");
+	                if(orden == 2){ orden = 0; }
+	                if( !ll_sort(pArrayListEmployee,employee_compareBySueldo, orden) ){
+	                    printf(" -- List ordered --\n\n");
+	                    status = 1;
+	                }
+	                break;
+	            case 5:
+	                break;
+	        }
+	    }
+
+	    return status;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).

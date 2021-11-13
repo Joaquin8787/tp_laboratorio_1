@@ -31,13 +31,11 @@ int buscarEmpleadoId(int* idABuscar, LinkedList* pArrayListEmployee,int tam){
  * \return int
  *
  */
-
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     int retorno = 1;
 	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-	auxP = fopen(path,"r");//LO LEO
+	auxP = fopen(path,"r"); //LO LEO
 	if(auxP != NULL){
 		parser_EmployeeFromText(auxP ,pArrayListEmployee);
 		retorno = 0;
@@ -46,10 +44,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 		printf("No se pudo leer el archivo");
 	}
 	fclose(auxP);
-	}
     return retorno;
 }
-
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
  *
@@ -61,18 +57,15 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	 int retorno = 1;
-	FILE* auxP;
-	if(path != NULL && pArrayListEmployee != NULL){
-		auxP = fopen(path,"rb");//LO LEO EN MODO BINARIO
+		FILE* auxP = fopen(path,"rb"); //LO LEO EN MODO BINARIO
 		if(auxP != NULL){
-		parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
-		retorno = 0;
+			parser_EmployeeFromBinary(auxP ,pArrayListEmployee);
+			retorno = 0;
 		}
 		else{
-		printf("No se pudo leer el archivo\n");
+			printf("No se pudo leer el archivo\n");
 		}
 		fclose(auxP);
-	}
 	    return retorno;
 }
 
@@ -225,8 +218,8 @@ do{
 				}
 				joaquin_getCaracter(&confirmar,"Esta seguro que quiere eliminar este empleado? (s/n): ","ERROR!!! \n",'n','s',5);
 				if(confirmar == 's'){
-				employee_delete(empleadoParaEliminar);
 				ll_remove(pArrayListEmployee,posicion);
+				employee_delete(empleadoParaEliminar);
 				printf("Se ha eliminado el empleado con exito!!!\n");
 				}
 			}
