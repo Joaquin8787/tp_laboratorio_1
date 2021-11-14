@@ -45,8 +45,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 	else{
 		printf("No se pudo leer el archivo");
 	}
-	}
 	fclose(auxP);
+	}
     return retorno;
 }
 

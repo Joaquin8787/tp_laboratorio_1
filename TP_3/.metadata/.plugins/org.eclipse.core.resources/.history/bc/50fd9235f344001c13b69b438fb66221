@@ -35,6 +35,7 @@ int main()
             	if(!ll_isEmpty(listaEmpleados)){
             		ll_clear(listaEmpleados);
             	}
+
             	if(controller_loadFromText("data.csv",listaEmpleados)==0){
             	printf("Se cargaron los datos de los empleados con exito!!! \n");
             	employee_getId(ll_get(listaEmpleados,(ll_len(listaEmpleados)-1)),&idAutoincremental);

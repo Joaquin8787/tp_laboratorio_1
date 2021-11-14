@@ -15,10 +15,10 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
 	int cantidad;
-	char buffer1[1024];
-	char buffer2[1024];
-	char buffer3[1024];
-	char buffer4[1024];
+	char buffer1[1024];// id
+	char buffer2[1024];//nombre
+	char buffer3[1024];//horas
+	char buffer4[1024];//sueldo
 
 	Employee* nuevoEmpleado;
 
@@ -34,10 +34,10 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 		              }
 		            nuevoEmpleado = employee_newParametros(buffer1, buffer2,buffer3,buffer4);//CONSTRUYO UN NUEVO EMPLEADO
 		            if(nuevoEmpleado != NULL){
-		            ll_add(pArrayListEmployee, nuevoEmpleado);//AGREGO AL LINKEDLIST
-		            retorno = 0;
+		            ll_add(pArrayListEmployee, nuevoEmpleado); //AGREGO AL LINKEDLIST
 		            }
 		        }
+    retorno = 0;
 	}
     return retorno;
 }
@@ -90,7 +90,7 @@ int parser_EmployeeWriteFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 		for(int i = 0;i<ll_len(pArrayListEmployee);i++){
 			auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
 			if(auxEmpleado != NULL){
-
+				printf("todo piola\n");
 				if(employee_getId(auxEmpleado,&id)==0 &&
 				employee_getNombre(auxEmpleado,nombre)==0 &&
 				employee_getHorasTrabajadas(auxEmpleado,&horasTrabajadas)==0&&

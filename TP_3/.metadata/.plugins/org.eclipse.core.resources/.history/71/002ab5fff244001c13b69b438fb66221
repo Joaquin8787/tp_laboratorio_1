@@ -45,8 +45,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 	else{
 		printf("No se pudo leer el archivo");
 	}
-	}
 	fclose(auxP);
+	}
     return retorno;
 }
 
@@ -71,10 +71,9 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 		else{
 		printf("No se pudo leer el archivo\n");
 		}
-
+		fclose(auxP);
 	}
-	fclose(auxP);
-	return retorno;
+	    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -376,7 +375,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 	}
 
 	}
- fclose(auxP);
+	fclose(auxP);
  return retorno;
 }
 

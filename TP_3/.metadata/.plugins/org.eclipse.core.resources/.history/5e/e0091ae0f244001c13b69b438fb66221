@@ -15,10 +15,10 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int retorno = 1;
 	int cantidad;
-	char buffer1[1024];
-	char buffer2[1024];
-	char buffer3[1024];
-	char buffer4[1024];
+	char buffer1[1024];// id
+	char buffer2[1024];//nombre
+	char buffer3[1024];//horas
+	char buffer4[1024];//sueldo
 
 	Employee* nuevoEmpleado;
 
